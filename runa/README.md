@@ -10,8 +10,8 @@ runtime control socket interface (`--control-socket`), file-based job admission
 (`--parallelism-file`), and API-safe `-d assumeexisting` behavior.
 
 - Source project: `external/runa`
-- Source revision: `ec2a20576ebac608bc527ccb0fa9571221cd47d7`
-- SHA-256: `7aab8d67e0bfcf3423c0dddaaaf54fe3a3a178d9b08701bde887bc8c47ce667d`
+- Source revision: `2172e6e2d1b140341f02e4852e98af570ffa5bc4`
+- SHA-256: `6c6879aa187d793fae8f90f319f71e014fdc34c2fa1bcf03ee6c7e2b11dc6459`
 - Runtime: Linux x86_64 with glibc and the standard C++ runtime
 
 Refresh this prebuilt when the Runa source or its runtime-control protocol
