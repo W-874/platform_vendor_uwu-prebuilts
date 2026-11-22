@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: Apache-2.0
+
+android_app_import {
+    name: "MiPushXmsf",
+    apk: "MiPushXmsf.apk",
+    preprocessed: true,
+    product_specific: true,
+    optional_uses_libs: [
+        "androidx.window.extensions",
+        "androidx.window.sidecar",
+    ],
+}
+
+android_app_import {
+    name: "MiPushManager",
+    apk: "MiPushManager.apk",
+    preprocessed: true,
+    product_specific: true,
+    optional_uses_libs: [
+        "androidx.window.extensions",
+        "androidx.window.sidecar",
+    ],
+}
