@@ -45,16 +45,19 @@ ADB sideload for Sagit) and reboot.
    Pull both APKs with `adb pull` and run `apksigner verify --print-certs` on each.
    Both certificate SHA-256 digests must match `openssl x509 -in
    vendor/uwu-prebuilts/MiPush/mipush.x509.pem -noout -fingerprint -sha256`.
-2. Switch to the Android user running a MiPush client you control. Register
-   the app with its valid app ID/key and use an authorized server sender.
-   Enable app notifications, provision its channel, and run
-   `adb shell cmd notification allow_mipush PACKAGE` for that user.
+2. In the Android user being tested, use a freshly installed third-party MiPush
+   client with no notification delegate. Enable its notifications and complete
+   registration with its valid app ID/key. Do not run `allow_mipush`. After the
+   server confirms registration, check the client's `AppSettings` in `adb shell
+   dumpsys notification`: its enabled delegate should be `com.xiaomi.xmsf`.
 3. Send, update, and cancel a notification through MiPush. In
    `adb shell dumpsys notification`, check that `pkg`, UID, and channel belong
    to the client while `opPkg` is `com.xiaomi.xmsf`. Find the client's UID with
    `adb shell cmd package list packages -U --user current PACKAGE`.
-4. Run `adb shell cmd notification disallow_mipush PACKAGE` and confirm a new
-   push cannot post for that app. Re-allow delegation and test a progress
-   notification with and without the client's native promotion eligibility.
+4. Run `adb shell cmd notification disallow_mipush PACKAGE`. Register again
+   without uninstalling: the delegate must stay disabled, and a new push must
+   not post for the app. Use `adb shell cmd notification allow_mipush PACKAGE`
+   to restore delegation explicitly. Test a progress notification with and
+   without the client's native promotion eligibility.
    Confirm a promoted notification when eligible and an ordinary notification
    otherwise, both attributed to the client.
